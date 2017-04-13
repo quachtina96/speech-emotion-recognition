@@ -1,2 +1,2 @@
 # speech-emotion-recognition
-6.345 Final Project with Amanda Ke
+6.345 Final Project
