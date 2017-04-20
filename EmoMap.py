@@ -96,39 +96,6 @@ class EmoMap():
 		else:
 			return self.utterance_to_emotion_map.keys()
 
-def filter_cat_txt(cat_txt_file, emotion_list, path_to_new_file):
-	"""Given a path to a "cat.txt" file, save a new "filtered.cat.txt" file 
-	listing only sessions that include the emotions desired. Return True if 
-	success.
-	
-	Args: 
-		cat_txt_file: Path to the cat.txt file that categorizes the emotion 
-			of utterances listed in the file.
-		emotion_list: List of emotions to include in the filtered list.
-
-	Raises:
-		InputError for files that cannot be opened.
-	
-	Possible emotions include: Neutral state, Frustration, Anger, Disgust, 
-		Sadness, Fear, Excited, Happiness, Surprise """
-	try:
-		f = open(cat_txt_file, 'r')
-	except:
-		raise InputError("Could not open path to the cat.txt file.")
-
-	emotion_set = set(emotion_list)
-
-	new_file = open(path_to_new_file, 'a')
-	
-	for line in f:
-		line_array = line.split(' ')
-		utteranceID = line_array[0]
-		new_file.write(line)
-	f.close()
-	new_file.close()
-
-	return True
-
 def get_parent_dir(utterance_filename):
 	if utterance_filename.find('impro'):
 		folder_name = utterance_filename[:len('Ses01F_impro05')]
