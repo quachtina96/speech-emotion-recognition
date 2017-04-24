@@ -1,11 +1,13 @@
 spectrogram = 0;
-glottal_source = 1;
+extract_covarep = 1;
+calculate_mfcc = 0;
 
 addpath(genpath('/Users/quacht/Documents/6.345/final_project/covarep/'));
 
 data_wav_directory = '/Users/quacht/Documents/6.345/final_project/data/sentence_wav_sample/';
 context_windows_dir = '/Users/quacht/Documents/6.345/final_project/data/spectrogram_context_windows/'
-glottal_source_dir = '/Users/quacht/Documents/6.345/final_project/data/glottal_source/'
+mfcc_dir = '/Users/quacht/Documents/6.345/final_project/data/mfcc_features/'
+% glottal_source_dir = '/Users/quacht/Documents/6.345/final_project/data/glottal_source/'
 fileID = fopen('/Users/quacht/Documents/6.345/final_project/data/EmoEvaluation/Categorical/test_utteranceIDs.txt','r');
 % C is a cell array that holds a single entry--the contents of the file.
 C = textscan(fileID,'%s');
@@ -16,10 +18,10 @@ paths = C{1};
 for i=1:length(paths)
     path = char(strcat(data_wav_directory, paths(i)));
     slash_occurences = strfind(path,'/');
-    filename = path(slash_occurences(end):length(path))
+    filename = path(slash_occurences(end)+1:length(path));
     
     [s, Fs] = audioread(path);
-    seconds = length(s) / Fs;  % seconds
+    seconds = length(s) / Fs;  % second
     milliseconds = seconds*1000;
 
     dcOffset = mean(s);
@@ -35,14 +37,28 @@ for i=1:length(paths)
         context_windows = get_context_windows(s_offset, frame_length, frame_shift);
         save(strcat(context_windows_dir, filename, '.spec.mat'), 'context_windows')
     end
-    % Extract from the glottal source waveform
-    if glottal_source==1
-        [g,dg,a,ag] = iaif(s_offset,Fs,p_vt,p_gl,d,hpfilt);
-        context_windows = get_context_windows(g, frame_length, frame_shift);
-        save(strcat(context_windows_dir, filename, '.glott.mat'), 'context_windows')
+    
+    if extract_covarep==1
+        % Save mat files corresponding to each .wav file. .mat files contain the
+%         feature matrix: features [number of frames X 35] and names:
+%         containing the feature name correspond to each column of the
+%         feature matrix
+        sample_rate=0.01; % State feature sampling rate
+        COVAREP_feature_extraction_on_file(path, sample_rate, frame_length, frame_shift);
     end
     
+    if calculate_mfcc==1
+        % TODO: Potentially switch this implementation of MFCC to the class
+        % assignemt's implementation for calculating MFCC.
+        [MFCC] = VAD_MFCC(s_offset,Fs)
+        save(strcat(mfcc_dir, filename, '.mfcc.mat'), 'MFCC')
+        disp('Finished MFCC')
+    end
 end
+
+
+
+
 
 
 
