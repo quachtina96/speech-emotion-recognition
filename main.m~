@@ -5,10 +5,10 @@ baseline_and_glottal = 1;
 addpath(genpath('/Users/quacht/Documents/6.345/final_project/covarep/'));
 
 data_wav_directory = '/Users/quacht/Documents/6.345/final_project/data/sentence_wav_sample/';
-spectrogram_dir = '/Users/quacht/Documents/6.345/final_project/data/spectrogram/';
-glottal_dir = '/Users/quacht/Documents/6.345/final_project/data/glottal/';
-baseline_dir = '/Users/quacht/Documents/6.345/final_project/data/baseline/';
-
+spectrogram_dir = '/Users/quacht/Documents/6.345/final_project/data/spectrogram/'
+glottal_dir = '/Users/quacht/Documents/6.345/final_project/data/glottal/'
+mfcc_dir = '/Users/quacht/Documents/6.345/final_project/data/mfcc_features/'
+% glottal_source_dir = '/Users/quacht/Documents/6.345/final_project/data/glottal_source/'
 fileID = fopen('/Users/quacht/Documents/6.345/final_project/data/EmoEvaluation/Categorical/test_utteranceIDs.txt','r');
 % C is a cell array that holds a single entry--the contents of the file.
 C = textscan(fileID,'%s');
@@ -35,14 +35,15 @@ for i=1:length(paths)
     if spectrogram==1
         % Save spectrogram generated directly from the waveform to
         % .wav.spec.mat files
-        spec_context_windows = get_context_windows(s_offset, frame_length, frame_shift);
-        csvwrite(strcat(spectrogram_dir, filename, '.spec.csv'),spec_context_windows);
-        save(strcat(spectrogram_dir, filename, '.spec.mat'), 'spec_context_windows')
+        baseline_context_windows = get_context_windows(s_offset, frame_length, frame_shift);
+        save(strcat(spectrogram_dir, filename, '.spec.mat'), 'context_windows')
     end
     if baseline_and_glottal == 1
         % TODO: Potentially switch this implementation of MFCC to the class
-        % assignment's implementation for calculating MFCC.
+        % assignemt's implementation for calculating MFCC.
         [MFCC] = VAD_MFCC(s_offset,Fs);
+        save(strcat(mfcc_dir, filename, '.mfcc.mat'), 'MFCC')
+        disp('Finished MFCC')
 
         % Save mat files corresponding to each .wav file. .mat files contain the
 %         feature matrix: features [number of frames X 35] and names:
@@ -92,14 +93,15 @@ for i=1:length(paths)
             fprintf(fileID,'%s\n',names_to_save{col});
         end
         fclose(fileID);
-        
-        % Save the glottal context windows and baseline names and features to .mat files.
-        save(strcat(baseline_dir, filename, '.baseline.mat'),'baseline_context_windows','names_to_save');
-        save(strcat(glottal_dir, filename, '.glott.mat'), 'glottal_context_windows');
+        % Save the baseline names and features to a mat file.
+        save(strcat(in_dir, basename, 'baseline.mat'),'baseline_context_windows','names_to_save')
+        glott_name = strcat(in_dir, basename, '.glott.mat')
+        save(strcat(in_dir, basename, '.glott.mat'), 'glottal_context_windows')
         
         % Write the glottal and baseline context windows each to a csv file.
-        csvwrite(strcat(baseline_dir, filename, '.baseline.csv'),baseline_context_windows);
-        csvwrite(strcat(glottal_dir, filename, '.glott.csv'),glottal_context_windows);
+        csvwrite(filename,baseline_context_windows)
+        save(strcat(spectrogram_dir, filename, '.spec.mat'), 'context_windows')
+        csvwrite(filename,glottal_context_windows)
     end
    
 end
