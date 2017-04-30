@@ -116,7 +116,10 @@ def save_utterance_id_list(path_to_categorical_directory, path_to_iemocap_senten
 			f.write(path + '\n')
 
 if __name__ == "__main__":
-	path_to_categorical_directory = "../data/EmoEvaluation/Categorical"
-	path_to_utterance_id_list = os.path.join(path_to_categorical_directory, 'utteranceIDs.txt')
-	path_to_iemocap_sentences_wav = "../data/sentence_wav_sample/"
-	save_utterance_id_list(path_to_categorical_directory, path_to_iemocap_sentences_wav, path_to_utterance_id_list)
+
+	for session_number in range(1,6):
+		path_to_categorical_directory = '/pool001/quacht/IEMOCAP_full_release/Session' + string(session_number) + '/dialog/EmoEvaluation/Categorical/'
+		path_to_iemocap_sentences_wav ='/pool001/quacht/IEMOCAP_full_release/Session'+ string(session_number) +'/sentences/wav/';
+		path_to_utterance_id_list = os.path.join(path_to_categorical_directory, 'utteranceIDs.txt')
+
+		save_utterance_id_list(path_to_categorical_directory, path_to_iemocap_sentences_wav, path_to_utterance_id_list)
