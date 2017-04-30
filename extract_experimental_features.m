@@ -2,16 +2,16 @@
 % Generate utteranceIDs for each Session.
 % Call this script for each Session. 
 
-addpath(genpath('/home/quacht/speech-emotion-recognition/covarep'));
+addpath('/home/quacht/speech-emotion-recognition/covarep_library');
 
 for session_number=1:5
 
-    data_wav_directory ='/pool001/quacht/IEMOCAP_full_release/Session'+ string(session_number) +'/sentences/wav/';
-    data_dir = '/pool001/quacht/IEMOCAP_full_release/Session' + string(session_number) + '/data/';
-    mat_dir = data_dir + 'mat/';
-    spectrogram_dir = data_dir + 'spectrogram/';
-    glottal_dir = data_dir + 'glottal/';
-    baseline_dir = data_dir + 'baseline/';
+    data_wav_directory ='/pool001/quacht/IEMOCAP_full_release/Session'+ string(session_number) +'/sentences/wav/'
+    data_dir = '/pool001/quacht/IEMOCAP_full_release/Session' + string(session_number) + '/data/'
+    mat_dir = data_dir + 'mat/'
+    spectrogram_dir = data_dir + 'spectrogram/'
+    glottal_dir = data_dir + 'glottal/'
+    baseline_dir = data_dir + 'baseline/'
 
     categorical_dir = '/pool001/quacht/IEMOCAP_full_release/Session' + string(session_number) + '/dialog/EmoEvaluation/Categorical/'
     fileID = fopen(categorical_dir + 'utteranceIDs.txt','r');
@@ -42,6 +42,7 @@ for session_number=1:5
         % .wav.spec.mat files
         spec_context_windows = get_context_windows(s_offset, frame_length, frame_shift);
        
+        pwd
         [MFCC] = VAD_MFCC(s_offset,Fs);
 
         % Save mat files corresponding to each .wav file. .mat files contain the
