@@ -2,7 +2,7 @@
 % Generate utteranceIDs for each Session.
 % Call this script for each Session. 
 
-addpath('/home/quacht/speech-emotion-recognition/covarep_library/voiceactivity');
+addpath(genpath('/home/quacht/speech-emotion-recognition/covarep_library/'));
 
 for session_number=1:5
 
