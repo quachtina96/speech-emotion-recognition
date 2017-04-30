@@ -22,11 +22,11 @@ for session_number=1:5
 
 
     for i=1:length(paths)
-        path = char(strcat(data_wav_directory, paths(i)));
-        slash_occurences = strfind(path,'/');
-        filename = path(slash_occurences(end)+1:length(path));
+        wav_path = char(strcat(data_wav_directory, paths(i)));
+        slash_occurences = strfind(wav_path,'/');
+        filename = wav_path(slash_occurences(end)+1:length(wav_path));
         
-        [s, Fs] = audioread(path);
+        [s, Fs] = audioread(wav_path);
         seconds = length(s) / Fs;  % second
         milliseconds = seconds*1000;
 
@@ -43,6 +43,7 @@ for session_number=1:5
         spec_context_windows = get_context_windows(s_offset, frame_length, frame_shift);
        
         pwd
+        path
         [MFCC] = VAD_MFCC(s_offset,Fs);
 
         % Save mat files corresponding to each .wav file. .mat files contain the
@@ -52,7 +53,7 @@ for session_number=1:5
         sample_rate=0.01; % State feature sampling rate to be 10 ms
         mfcc_size = size(MFCC);
         num_frames = mfcc_size(2);
-        [glottal_context_windows, voice_feature_names, voice_features] = COVAREP_feature_extraction_on_file(path, sample_rate, frame_length, frame_shift, num_frames);
+        [glottal_context_windows, voice_feature_names, voice_features] = COVAREP_feature_extraction_on_file(wav_path, sample_rate, frame_length, frame_shift, num_frames);
         voice_features = transpose(voice_features);
         % Concatenate the MFCCs and the Voice Quality features to create
         % the baseline features
