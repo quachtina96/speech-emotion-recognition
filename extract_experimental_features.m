@@ -38,8 +38,7 @@ for session_number=1:5
         frame_shift = 160; %10ms
 
 
-        % Save spectrogram generated directly from the waveform to
-        % .wav.spec.mat files
+        % Generate context_windows from the waveform.
         spec_context_windows = get_context_windows(s_offset, frame_length, frame_shift);
        
         pwd
@@ -95,12 +94,12 @@ for session_number=1:5
         fclose(fileID);
 
         % Save the data to .mat file specific to this wav file.
-        save(strcat(mat_dir, filename, '.mat'),'baseline_context_windows','names_to_save','glottal_context_windows', 'spec_context_windows');
+        save(mat_dir + filename + '.mat','baseline_context_windows','names_to_save','glottal_context_windows', 'spec_context_windows');
 
         % Write the glottal and baseline context windows each to a csv file.
-        csvwrite(strcat(baseline_dir, filename, '.baseline.csv'),baseline_context_windows);
-        csvwrite(strcat(glottal_dir, filename, '.glott.csv'),glottal_context_windows);
-        csvwrite(strcat(spectrogram_dir, filename, '.spec.csv'),spec_context_windows);
+        csvwrite(baseline_dir + filename + '.baseline.csv', baseline_context_windows);
+        csvwrite(glottal_dir + filename + '.glott.csv', glottal_context_windows);
+        csvwrite(spectrogram_dir + filename + '.spec.csv', spec_context_windows);
 
     end
 
