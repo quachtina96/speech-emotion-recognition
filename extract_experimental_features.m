@@ -2,7 +2,7 @@
 % Generate utteranceIDs for each Session.
 % Call this script for each Session. 
 
-addpath('/home/quacht/speech-emotion-recognition/covarep_library');
+addpath('/home/quacht/speech-emotion-recognition/covarep_library/voiceactivity');
 
 for session_number=1:5
 
@@ -43,7 +43,6 @@ for session_number=1:5
         spec_context_windows = get_context_windows(s_offset, frame_length, frame_shift);
        
         pwd
-        path
         [MFCC] = VAD_MFCC(s_offset,Fs);
 
         % Save mat files corresponding to each .wav file. .mat files contain the
