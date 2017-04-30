@@ -94,12 +94,12 @@ for session_number=1:5
         fclose(fileID);
 
         % Save the data to .mat file specific to this wav file.
-        save(mat_dir + filename + '.mat','baseline_context_windows','names_to_save','glottal_context_windows', 'spec_context_windows');
+        save(char(mat_dir + filename + '.mat'),'baseline_context_windows','names_to_save','glottal_context_windows', 'spec_context_windows');
 
         % Write the glottal and baseline context windows each to a csv file.
-        csvwrite(baseline_dir + filename + '.baseline.csv', baseline_context_windows);
-        csvwrite(glottal_dir + filename + '.glott.csv', glottal_context_windows);
-        csvwrite(spectrogram_dir + filename + '.spec.csv', spec_context_windows);
+        csvwrite(char(baseline_dir + filename + '.baseline.csv'), baseline_context_windows);
+        csvwrite(char(glottal_dir + filename + '.glott.csv'), glottal_context_windows);
+        csvwrite(char(spectrogram_dir + filename + '.spec.csv'), spec_context_windows);
 
     end
 
