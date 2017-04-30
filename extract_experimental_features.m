@@ -13,6 +13,11 @@ for session_number=1:5
     glottal_dir = data_dir + 'glottal/'
     baseline_dir = data_dir + 'baseline/'
 
+    data_dirs = [mat_dir, spectrogram_dir, glottal_dir,baseline_dir]
+    for i=1:len(data_dirs)
+        mkdir(data_dirs[i])
+    end
+
     categorical_dir = '/pool001/quacht/IEMOCAP_full_release/Session' + string(session_number) + '/dialog/EmoEvaluation/Categorical/'
     fileID = fopen(categorical_dir + 'utteranceIDs.txt','r');
     % C is a cell array that holds a single entry--the contents of the file.
