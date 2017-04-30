@@ -6,16 +6,16 @@ addpath(genpath('/home/quacht/speech-emotion-recognition/covarep_library/'));
 
 for session_number=1:5
 
-    data_wav_directory ='/pool001/quacht/IEMOCAP_full_release/Session'+ string(session_number) +'/sentences/wav/'
-    data_dir = '/pool001/quacht/IEMOCAP_full_release/Session' + string(session_number) + '/data/'
-    mat_dir = data_dir + 'mat/'
-    spectrogram_dir = data_dir + 'spectrogram/'
-    glottal_dir = data_dir + 'glottal/'
-    baseline_dir = data_dir + 'baseline/'
+    data_wav_directory ='/pool001/quacht/IEMOCAP_full_release/Session'+ string(session_number) +'/sentences/wav/';
+    data_dir = '/pool001/quacht/IEMOCAP_full_release/Session' + string(session_number) + '/data/';
+    mat_dir = data_dir + 'mat/';
+    spectrogram_dir = data_dir + 'spectrogram/';
+    glottal_dir = data_dir + 'glottal/';
+    baseline_dir = data_dir + 'baseline/';
 
-    data_dirs = [mat_dir, spectrogram_dir, glottal_dir,baseline_dir]
-    for i=1:len(data_dirs)
-        mkdir(data_dirs[i])
+    data_dirs = [mat_dir, spectrogram_dir, glottal_dir,baseline_dir];
+    for i=1:length(data_dirs)
+        mkdir(char(data_dirs(i)));;
     end
 
     categorical_dir = '/pool001/quacht/IEMOCAP_full_release/Session' + string(session_number) + '/dialog/EmoEvaluation/Categorical/'
