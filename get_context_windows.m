@@ -25,7 +25,7 @@ function [context_windows] = get_context_windows(waveform, frame_length, frame_s
             context_windows = cat(2, context_windows, current_context_window);
             current_context_window = [];
         end
-        plot(spectrum)
+        % plot(spectrum)
         if frame == num_frames
             % Zero-pad the last context frame so that it is size 640 x 1
             size_context = size(current_context_window);
