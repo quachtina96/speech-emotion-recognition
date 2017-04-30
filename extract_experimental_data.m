@@ -1,16 +1,10 @@
-spectrogram = 1;
-baseline_and_glottal = 1;
+function [ success ] = extract_experimental_data(path_to_covarep, data_wav_directory, mat_dir, spectrogram_dir, glottal_dir, baseline_dir, path_to_utterance_IDs)
+%extract_experimental_data given a list of utterance_IDs and the 
+%   Detailed explanation goes here
+success = 0;
+addpath(genpath(path_to_covarep));
 
-
-addpath(genpath('/Users/quacht/Documents/6.345/final_project/covarep/'));
-
-data_wav_directory = '/Users/quacht/Documents/6.345/final_project/data/sentence_wav_sample/';
-mat_dir = '/Users/quacht/Documents/6.345/final_project/data/mat/';
-spectrogram_dir = '/Users/quacht/Documents/6.345/final_project/data/spectrogram/';
-glottal_dir = '/Users/quacht/Documents/6.345/final_project/data/glottal/';
-baseline_dir = '/Users/quacht/Documents/6.345/final_project/data/baseline/';
-
-fileID = fopen('/Users/quacht/Documents/6.345/final_project/data/EmoEvaluation/Categorical/test_utteranceIDs.txt','r');
+fileID = fopen(path_to_utterance_IDs);
 % C is a cell array that holds a single entry--the contents of the file.
 C = textscan(fileID,'%s');
 % A list of every utteranceID
@@ -37,10 +31,7 @@ for i=1:length(paths)
     % Save spectrogram generated directly from the waveform to
     % .wav.spec.mat files
     spec_context_windows = get_context_windows(s_offset, frame_length, frame_shift);
-    csvwrite(strcat(spectrogram_dir, filename, '.spec.csv'),spec_context_windows);
-    save(strcat(spectrogram_dir, filename, '.spec.mat'), 'spec_context_windows')
-
-
+   
     [MFCC] = VAD_MFCC(s_offset,Fs);
 
     % Save mat files corresponding to each .wav file. .mat files contain the
@@ -92,18 +83,14 @@ for i=1:length(paths)
     end
     fclose(fileID);
 
-    % Save the glottal context windows and baseline names and features to .mat files.
-    save(strcat(mat_dir, filename, '.mat'),'baseline_context_windows','names_to_save', 'glottal_context_windows');
+    % Save the data to .mat file specific to this wav file.
+    save(strcat(mat_dir, filename, '.mat'),'baseline_context_windows','names_to_save','glottal_context_windows', 'spec_context_windows');
 
     % Write the glottal and baseline context windows each to a csv file.
     csvwrite(strcat(baseline_dir, filename, '.baseline.csv'),baseline_context_windows);
     csvwrite(strcat(glottal_dir, filename, '.glott.csv'),glottal_context_windows);
+    csvwrite(strcat(spectrogram_dir, filename, '.spec.csv'),spec_context_windows);
+    success = 1;
 end
-
-
-
-
-
-
-
+end
 
