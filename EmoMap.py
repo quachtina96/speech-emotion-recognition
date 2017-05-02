@@ -97,9 +97,9 @@ class EmoMap():
 			return self.utterance_to_emotion_map.keys()
 
 def get_parent_dir(utterance_filename):
-	if utterance_filename.find('impro'):
+	if utterance_filename.find('impro') != -1:
 		folder_name = utterance_filename[:len('Ses01F_impro05')]
-	elif utterance_filename.find('script'):
+	elif utterance_filename.find('script')  != -1:
 		folder_name = utterance_filename[:len('Ses01F_script01_2')]
 	return folder_name
 	
@@ -116,7 +116,6 @@ def save_utterance_id_list(path_to_categorical_directory, path_to_iemocap_senten
 			f.write(path + '\n')
 
 if __name__ == "__main__":
-
 	for session_number in range(1,6):
 		path_to_categorical_directory = '/pool001/quacht/IEMOCAP_full_release/Session' + str(session_number) + '/dialog/EmoEvaluation/Categorical/'
 		path_to_iemocap_sentences_wav ='/pool001/quacht/IEMOCAP_full_release/Session'+ str(session_number) +'/sentences/wav/';
