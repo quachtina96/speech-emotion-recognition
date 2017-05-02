@@ -4,9 +4,9 @@
 
 addpath(genpath('/home/quacht/speech-emotion-recognition/covarep_library/'));
 
-session_number=5
+session_number=1
 
-data_wav_directory ='/pool001/quacht/IEMOCAP_full_release/Session'+ string(session_number) +'/sentences/wav/';
+data_wav_directory ='/pool001/quacht/IEMOCAP_full_release/Session'+ string(session_number) + '/sentences/wav/';
 data_dir = '/pool001/quacht/IEMOCAP_full_release/Session' + string(session_number) + '/data/';
 mat_dir = data_dir + 'mat/';
 spectrogram_dir = data_dir + 'spectrogram/';
@@ -18,8 +18,10 @@ for i=1:length(data_dirs)
     mkdir(char(data_dirs(i)));;
 end
 
-categorical_dir = '/pool001/quacht/IEMOCAP_full_release/Session' + string(session_number) + '/dialog/EmoEvaluation/Categorical/'
-fileID = fopen(categorical_dir + 'utteranceIDs.txt','r');
+% categorical_dir = '/pool001/quacht/IEMOCAP_full_release/Session' + string(session_number) + '/dialog/EmoEvaluation/Categorical/'
+% fileID = fopen(categorical_dir + 'utteranceIDs.txt','r');
+categorical_dir = '/home/quacht/speech-emotion-recognition/'
+fileID = fopen(categorical_dir + 'session' + string(session_number) + '_utterance.txt')
 % C is a cell array that holds a single entry--the contents of the file.
 C = textscan(fileID,'%s');
 % A list of every utteranceID
