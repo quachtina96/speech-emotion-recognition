@@ -2,10 +2,8 @@
 % Generate utteranceIDs for each Session.
 % Call this script for each Session. 
 
-function [] =extract_experimental_features(arg1) 
+function [] =extract_experimental_features(session_number, utterance_path) 
 addpath(genpath('/home/quacht/speech-emotion-recognition/covarep_library/'));
-
-session_number=arg1
 
 data_wav_directory ='/pool001/quacht/IEMOCAP_full_release/Session'+ string(session_number) + '/sentences/wav/';
 data_dir = '/pool001/quacht/IEMOCAP_full_release/Session' + string(session_number) + '/data/';
@@ -16,13 +14,10 @@ baseline_dir = data_dir + 'baseline/';
 
 data_dirs = [mat_dir, spectrogram_dir, glottal_dir,baseline_dir];
 for i=1:length(data_dirs)
-    mkdir(char(data_dirs(i)));;
+    mkdir(char(data_dirs(i)));
 end
 
-% categorical_dir = '/pool001/quacht/IEMOCAP_full_release/Session' + string(session_number) + '/dialog/EmoEvaluation/Categorical/'
-% fileID = fopen(categorical_dir + 'utteranceIDs.txt','r');
-categorical_dir = '/home/quacht/speech-emotion-recognition/'
-fileID = fopen(strcat(categorical_dir, 'session',string(session_number),'_utterance.txt'))
+fileID = fopen(string(utterance_path))
 % C is a cell array that holds a single entry--the contents of the file.
 C = textscan(fileID,'%s');
 % A list of every utteranceID
@@ -30,7 +25,7 @@ paths = C{1};
 
 
 for i=1:length(paths)
-    wav_path = char(strcat(data_wav_directory, paths(i)));
+    wav_path = char(strcat(data_wav_directory, paths(i)))
     slash_occurences = strfind(wav_path,'/');
     filename = wav_path(slash_occurences(end)+1:length(wav_path));
     
@@ -110,9 +105,5 @@ for i=1:length(paths)
     csvwrite(char(spectrogram_dir + filename + '.spec.csv'), spec_context_windows);
 
 end
-
-
-
-
-
+return
 end
