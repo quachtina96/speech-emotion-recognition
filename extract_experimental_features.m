@@ -4,7 +4,7 @@
 
 addpath(genpath('/home/quacht/speech-emotion-recognition/covarep_library/'));
 
-session_number=1
+session_number=5
 
 data_wav_directory ='/pool001/quacht/IEMOCAP_full_release/Session'+ string(session_number) +'/sentences/wav/';
 data_dir = '/pool001/quacht/IEMOCAP_full_release/Session' + string(session_number) + '/data/';
