@@ -4,7 +4,7 @@
 # iterating through the different session numbers.
 
 
-session_number=i
+session_number=$1
 # path to the directory containing the lists of utterance IDs to be analyzed.
 utterance_dir="/home/quacht/speech-emotion-recognition/session/session${session_number}/"
 
@@ -13,6 +13,5 @@ cd $utterance_dir
 for file in *; do
 utterance_path=${utterance_dir}$file
 echo $utterance_path
-# sbatch /home/quacht/speech-remotion-recognition/extract_features.slurm $session_number $utterance_path
+bash /home/quacht/speech-emotion-recognition/extract_features.slurm $session_number $utterance_path
 done
-

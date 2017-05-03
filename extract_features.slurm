@@ -17,4 +17,4 @@ utterance_path=$2
 # order to extract features from the wav files indicated by the utterance list 
 # and save them to 3 .csv files per utterance. 
 # NOTE: that the when this function is called, the MATLAB is launched and does not quit.... I think.
-matlab -nodesktop -nojvm -r "extract_experimental_features $session_number $utterance_path";quit >> session${session_number}_feature_extraction_log.txt
+matlab -nodesktop -nojvm -r "extract_experimental_features $session_number $utterance_path;quit" # >> session${session_number}_feature_extraction_log.txt

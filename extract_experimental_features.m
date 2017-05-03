@@ -44,7 +44,6 @@ for i=1:length(paths)
     % Generate context_windows from the waveform.
     spec_context_windows = get_context_windows(s_offset, frame_length, frame_shift);
    
-    pwd
     [MFCC] = VAD_MFCC(s_offset,Fs);
 
     % Save mat files corresponding to each .wav file. .mat files contain the
