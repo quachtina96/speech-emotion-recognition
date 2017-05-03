@@ -14,4 +14,5 @@ for file in *; do
 utterance_path=${utterance_dir}$file
 echo $utterance_path
 bash /home/quacht/speech-emotion-recognition/extract_features.slurm $session_number $utterance_path
+# sbatch /home/quacht/speech-remotion-recognition/extract_features.slurm $session_number $utterance_path
 done
