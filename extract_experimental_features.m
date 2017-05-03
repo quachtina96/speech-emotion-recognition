@@ -22,9 +22,9 @@ fileID = fopen(string(utterance_path))
 C = textscan(fileID,'%s');
 % A list of every utteranceID
 paths = C{1};
-
-
+err_count = 0;
 for i=1:length(paths)
+    try
     wav_path = char(strcat(data_wav_directory, paths(i)))
     slash_occurences = strfind(wav_path,'/');
     filename = wav_path(slash_occurences(end)+1:length(wav_path));
@@ -103,7 +103,11 @@ for i=1:length(paths)
     csvwrite(char(baseline_dir + filename + '.baseline.csv'), baseline_context_windows);
     csvwrite(char(glottal_dir + filename + '.glott.csv'), glottal_context_windows);
     csvwrite(char(spectrogram_dir + filename + '.spec.csv'), spec_context_windows);
-
+    catch
+    err_count = err_count + 1
+    disp('[ERROR] could not analyze ' + paths(i))
 end
+end
+disp(err_count)
 return
 end

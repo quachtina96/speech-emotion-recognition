@@ -15,4 +15,3 @@ utterance_path=${utterance_dir}$file
 echo $utterance_path
 # sbatch /home/quacht/speech-remotion-recognition/extract_features.slurm $session_number $utterance_path
 done
-
