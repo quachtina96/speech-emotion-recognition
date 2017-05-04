@@ -6,6 +6,7 @@
 import sys
 import os
 from collections import defaultdict
+import pickle
 
 def init_dict(path_to_categorical_directory, emotion_is_key=False):
 	"""Initialize the map.
@@ -103,7 +104,7 @@ def get_parent_dir(utterance_filename):
 		folder_name = utterance_filename[:len('Ses01F_script01_2')]
 	return folder_name
 	
-def save_utterance_id_list(path_to_categorical_directory, path_to_iemocap_sentences_wav, path_to_utterance_id_list):
+def save_utterance_id_list(path_to_categorical_directory, path_to_utterance_id_list):
 	emo_map = EmoMap()
 	emo_map.from_categorical_dir(path_to_categorical_directory)
 	desired_emotions = ['Anger', 'Happiness', 'Sadness', 'Neutral state']
@@ -115,10 +116,25 @@ def save_utterance_id_list(path_to_categorical_directory, path_to_iemocap_senten
 			path = os.path.join(parent_dir, utt_id + '.wav')
 			f.write(path + '\n')
 
+def save_pickled_utt_to_emotion_map(path_to_categorical_directory, pickle_path):
+	emo_map = EmoMap()
+	emo_map.from_categorical_dir(path_to_categorical_directory)
+	pickle.dump(emo_map.utterance_to_emotion_map, open(pickle_path, "wb" ))
+
 if __name__ == "__main__":
 	for session_number in range(1,6):
 		path_to_categorical_directory = '/pool001/quacht/IEMOCAP_full_release/Session' + str(session_number) + '/dialog/EmoEvaluation/Categorical/'
-		path_to_iemocap_sentences_wav ='/pool001/quacht/IEMOCAP_full_release/Session'+ str(session_number) +'/sentences/wav/';
-		path_to_utterance_id_list = os.path.join(path_to_categorical_directory, 'utteranceIDs.txt')
+	# 	# path_to_iemocap_sentences_wav ='/pool001/quacht/IEMOCAP_full_release/Session'+ str(session_number) +'/sentences/wav/';
+	# 	path_to_utterance_id_list = os.path.join(path_to_categorical_directory, 'utteranceIDs.txt')
+	# 	# save_utterance_id_list(path_to_categorical_directory, path_to_utterance_id_list)
+	
+	pickle_path = "session1_pickle"
+	save_pickled_utt_to_emotion_map(path_to_categorical_directory, pickle_path)
 
-		save_utterance_id_list(path_to_categorical_directory, path_to_iemocap_sentences_wav, path_to_utterance_id_list)
+	# NOTE: to open pickle file run the code below
+	# f = open(pickle_path, 'rb')
+	# map = pickle.Unpickler(f).load()
+	
+
+
+
