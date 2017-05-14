@@ -3,6 +3,7 @@ import pickle
 import logging as log
 import os
 from pathlib import Path
+from os.path import abspath
 import sys
 
 '''
@@ -77,7 +78,7 @@ dataPATH = '~/pool001/quacht/IEMOCAP_full_release/Session'+num+'/data/'
 '''
 print('loading labels from utterance_to_emotion_map.pickle')
 # load a pickle
-fd = pd.read_pickle(dataPATH+'utterance_to_emotion_map.pickle')
+fd = pd.read_pickle(abspath(dataPATH+'utterance_to_emotion_map.pickle'))
 filename_to_label = []
 data_filenames = []
 labels = []
@@ -135,9 +136,9 @@ for name, label in filename_to_label:
 	if count%200 == 0:
 		print('count: ', count)
 	# check if files exist
-	file_baseline = dataPATH + 'baseline/' + name + '.wav.baseline.csv'
-	file_glottal = dataPATH + 'glottal/' + name + '.wav.glott.csv'
-	file_spectrogram = dataPATH + 'spectrogram/' + name + '.wav.spec.csv'
+	file_baseline = abspath(dataPATH + 'baseline/' + name + '.wav.baseline.csv')
+	file_glottal = abspath(dataPATH + 'glottal/' + name + '.wav.glott.csv')
+	file_spectrogram = abspath(dataPATH + 'spectrogram/' + name + '.wav.spec.csv')
 	if Path(file_baseline).exists() and Path(file_glottal).exists() and Path(file_spectrogram).exists():
 		# if all files exists add it to dataset
 		
