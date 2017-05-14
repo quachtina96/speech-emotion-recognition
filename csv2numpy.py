@@ -67,7 +67,7 @@ log.warning('is when this file started running.')
 
 num = sys.argv[1]
 
-dataPATH = '~/pool001/quacht/IEMOCAP_full_release/Session'+num+'/data/'
+dataPATH = 'pool001/quacht/IEMOCAP_full_release/Session'+num+'/data/'
 
 '''
  UTTERANCE TO EMOTIONMAP FORMAT
