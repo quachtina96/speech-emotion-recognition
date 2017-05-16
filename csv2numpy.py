@@ -20,59 +20,31 @@ filename_to_label = []
 data_filenames = []
 labels = []
 for key in fd:
-	classifications = fd[key]
-	count = [0]*4
-	print('classifications: ', classifications)
-	for emotions in classifications:
-		if emotions[0] == 'Happiness':
-			count[0] += 1
-		elif emotions[0] == 'Sadness':
-			count[1] += 1
-		elif emotions[0] == 'Anger':
-			count[2] += 1
-		elif emotions[0] == 'Neutral State':
-			count[3] += 1
-	mode = max(count)
-	if mode != 0:
-		label_idx = count.index(mode)
-		if label_idx == 0:
-			label = 'Happiness'
-		elif label_idx == 1:
-			label = 'Sadness'
-		elif label_idx == 2:
-			label = 'Anger'
-		elif label_idx == 3:
-			label = 'Neutral'
-		data_filenames.append(key)
-		labels.append(label)
-		filename_to_label.append((key,label))
-        filename_to_label = sorted(filename_to_label,key=lambda x: x[0])
-
-        classifications = fd[key]
-        count = [0]*4
-        for emotions in classifications:
-                if emotions[0] == 'Happiness':
-                        count[0] += 1
-                elif emotions[0] == 'Sadness':
-                        count[1] += 1
-                elif emotions[0] == 'Anger':
-                        count[2] += 1
-                elif emotions[0] == 'Neutral state':
-                        count[3] += 1
-        mode = max(count)
-        if mode != 0:
-                label_idx = count.index(mode)
-                if label_idx == 0:
-                        label = 'Happiness'
-                elif label_idx == 1:
-                        label = 'Sadness'
-                elif label_idx == 2:
-                        label = 'Anger'
-                elif label_idx == 3:
-                        label = 'Neutral'
-                data_filenames.append(key)
-                labels.append(label)
-                filename_to_label.append((key,label))
+    classifications = fd[key]
+    count = [0]*4
+    for emotions in classifications:
+            if emotions[0] == 'Happiness':
+                    count[0] += 1
+            elif emotions[0] == 'Sadness':
+                    count[1] += 1
+            elif emotions[0] == 'Anger':
+                    count[2] += 1
+            elif emotions[0] == 'Neutral state':
+                    count[3] += 1
+    mode = max(count)
+    if mode != 0:
+            label_idx = count.index(mode)
+            if label_idx == 0:
+                    label = 'Happiness'
+            elif label_idx == 1:
+                    label = 'Sadness'
+            elif label_idx == 2:
+                    label = 'Anger'
+            elif label_idx == 3:
+                    label = 'Neutral'
+            data_filenames.append(key)
+            labels.append(label)
+            filename_to_label.append((key,label))
                                                             
 print('finished going thru label matrix ...')
 print('length of filename_to_label list: ',len(filename_to_label))
