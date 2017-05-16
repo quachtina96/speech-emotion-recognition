@@ -85,6 +85,7 @@ labels = []
 for key in fd:
 	classifications = fd[key]
 	count = [0]*4
+	print('classifications: ', classifications)
 	for emotions in classifications:
 		if emotions[0] == 'Happiness':
 			count[0] += 1
