@@ -46,7 +46,7 @@ for key in fd:
 		data_filenames.append(key)
 		labels.append(label)
 		filename_to_label.append((key,label))
-filename_to_label = sorted(filename_to_label,key=lambda x: x[0])
+        filename_to_label = sorted(filename_to_label,key=lambda x: x[0])
 
         classifications = fd[key]
         count = [0]*4
