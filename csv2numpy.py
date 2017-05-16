@@ -137,7 +137,7 @@ data_dictionary = {
                                         }
 
 print('pickling data_dictionary...')
-with open('pickles/csv2pd/data_dic'+num+'.pickle', 'wb') as f:
+with open('/home/akekeke/pickles/csv2pd/data_dic'+num+'.pickle', 'wb') as f:
     # Pickle the 'data' dictionary using the highest protocol available.
     pickle.dump(data_dictionary, f, pickle.HIGHEST_PROTOCOL)
 
