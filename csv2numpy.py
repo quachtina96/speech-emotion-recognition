@@ -13,13 +13,6 @@ num = sys.argv[1]
 
 dataPATH = '/pool001/quacht/IEMOCAP_full_release/Session'+num+'/data/'
 
-'''
- UTTERANCE TO EMOTIONMAP FORMAT
-  - DICTIONARY
-  - u2e['utterance_filename'] = [ [emotion1], [emotion2] ]
-  - key: string
-  - value: list of string list
-'''
 print('loading labels from utterance_to_emotion_map.pickle')
 # load a pickle
 fd = pd.read_pickle(dataPATH+'utterance_to_emotion_map.pickle')
