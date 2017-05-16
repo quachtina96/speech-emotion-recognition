@@ -7,22 +7,6 @@ from os.path import abspath
 import sys
 
 '''
-file = 'csv_data/Ses01F_impro07_M019.wav.spec.csv'
-print('loading csv into pandas datafra')
-# load csv into pandas dataframe
-df=pd.read_csv(file, sep=',',header=None)
-
-print(df)
-
-print('pickling...')
-# pickle pandas datafram
-df.to_pickle('pickles/test1.p')
-
-
-'''
-
-
-'''
 This is the structure that this file expects the directories to
 be in.
 
@@ -206,17 +190,3 @@ with open('pickles/csv2pd/data_dic'+num+'.pickle', 'wb') as f:
 
 log.basicConfig(format='%(asctime)s %(message)s', datefmt='%m/%d/%Y %I:%M:%S %p')
 log.warning('is when this file finished running.')
-
-
-
-
-
-
-
-
-
-
-
-
-
-
