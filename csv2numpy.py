@@ -27,7 +27,6 @@ filename_to_label = []
 data_filenames = []
 labels = []
 for key in fd:
-<<<<<<< HEAD
 	classifications = fd[key]
 	count = [0]*4
 	print('classifications: ', classifications)
@@ -55,7 +54,7 @@ for key in fd:
 		labels.append(label)
 		filename_to_label.append((key,label))
 filename_to_label = sorted(filename_to_label,key=lambda x: x[0])
-=======
+
         classifications = fd[key]
         count = [0]*4
         for emotions in classifications:
@@ -82,7 +81,6 @@ filename_to_label = sorted(filename_to_label,key=lambda x: x[0])
                 labels.append(label)
                 filename_to_label.append((key,label))
                                                             
->>>>>>> f4d4cd72f7af1f9a9168ed728178aca8ec6d9bc2
 print('finished going thru label matrix ...')
 print('length of filename_to_label list: ',len(filename_to_label))
 
