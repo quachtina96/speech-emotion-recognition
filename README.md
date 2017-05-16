@@ -1,7 +1,7 @@
 # speech-emotion-recognition
 6.345 Final Project
 
-'''
+
 This is the structure that this file expects the directories to
 be in.
 ~home
@@ -37,4 +37,3 @@ be in.
                 Session4
                 Session5
         pickles - this is where the stuff we'll be working with is saved
-'''
