@@ -37,3 +37,12 @@ be in.
                 Session4
                 Session5
         pickles - this is where the stuff we'll be working with is saved
+        
+        
+ '''
+ UTTERANCE TO EMOTIONMAP FORMAT
+  - DICTIONARY
+  - u2e['utterance_filename'] = [ [emotion1], [emotion2] ]
+  - key: string
+  - value: list of string list
+'''
