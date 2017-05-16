@@ -1,8 +1,9 @@
 #!/bin/bash
 # sets up environment
 
-echo "adding python modules"
+unset SSH_ASKPASS
 
+echo "adding python modules"
 module load engaging/python/3.5.1
 pip3 install --user pandas
 pip3 install --user keras
