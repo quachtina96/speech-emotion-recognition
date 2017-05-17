@@ -44,7 +44,7 @@ for key in fd:
                     label = 3 # neutral
             data_filenames.append(key)
             labels.append(label_idx)
-            filename_to_label.append((key,label_idx)
+            filename_to_label.append((key,label_idx))
                                                             
 print('finished going thru label matrix ...')
 print('length of filename_to_label list: ',len(filename_to_label))
