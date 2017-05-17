@@ -43,8 +43,8 @@ for key in fd:
             elif label_idx == 3:
                     label = 3 # neutral
             data_filenames.append(key)
-            labels.append(label)
-            filename_to_label.append((key,label))
+            labels.append(label_idx)
+            filename_to_label.append((key,label_idx)
                                                             
 print('finished going thru label matrix ...')
 print('length of filename_to_label list: ',len(filename_to_label))
@@ -126,15 +126,14 @@ print('spectrogram_labels: ',len(spectrogram_labels))
 print('final_labels length: ',len(final_labels))
 
 
-data_dictionary = {
-                                        'baseline': baseline, # pandas dataframe
-                                        'baseline_labels': baseline_labels,
-                                        'glottal': glottal, # pandas dataframe
-                                        'glottal_labels': glottal_labels,
-                                        'spectrogram': spectrogram, # pandas dataframe
-                                        'spectrogram_labels': spectrogram_labels,
-                                        'labels': final_labels # list for now?
-                                        }
+data_dictionary = { 'baseline': baseline, # pandas dataframe
+                    'baseline_labels': baseline_labels,
+                    'glottal': glottal, # pandas dataframe
+                    'glottal_labels': glottal_labels,
+                    'spectrogram': spectrogram, # pandas dataframe
+                    'spectrogram_labels': spectrogram_labels,
+                    'labels': final_labels # list for now?
+                    }
 
 print('pickling data_dictionary...')
 with open('/home/akekeke/pickles/csv2pd/data_dic'+num+'.pickle', 'wb') as f:
