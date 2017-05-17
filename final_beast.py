@@ -32,15 +32,19 @@ pydot.find_graphviz = lambda: True #this is a quick fix for keras visualization 
 
 #np.random.seed(12321)  # for reproducibility
 
+modelpath = '/home/akekeke/pickles/models/'
+
 log.basicConfig(format='%(asctime)s %(message)s', datefmt='%m/%d/%Y %I:%M:%S %p')
 log.warning('is when this file started running.')
 
 f = sys.argv[2]
 
 if sys.arg[1] = 'p':
-	poke = True
+	#if you want to poke/play with your model
+	poke = True 
 else:
-	poke = False
+	#if you dont want to poke with your model
+	poke = False 
 
 baseline = False
 spectrogram = False
@@ -86,7 +90,7 @@ encoding_dim = 64
 print('d: ',d)
 print('encoding dim: ',encoding_dim)
 
-if Path('aec_'+fe+'.h5').exists():
+if Path(modelpath + 'aec_'+fe+'.h5').exists() and !Poke:
 	print('loaded existing aec model')
 	aec = load_model('aec_'+fe+'.h5')
 else:
@@ -132,7 +136,7 @@ else:
 	                validation_data = (X_test,X_test))
 
 	#Uncomment the following line if you would like to save your trained model
-	aec.save('./aec_'+fe+'.h5')
+	aec.save(modelpath + './aec_'+fe+'.h5')
 
 
 # this is to get encoded output
@@ -163,7 +167,7 @@ print('reshaped y_train_encoded.shape: ', y_train_encoded.shape)
 print('reshaped y_test_encoded.shape: ', y_test_encoded.shape)
 
 
-if Path('model.h5_'+fe+'').exists():
+if Path(modelpath + 'model.h5_'+fe+'').exists() and !Poke:
 	print('loaded existing model')
 	model = load_model('model_'+fe+'.h5')
 else:
@@ -208,7 +212,7 @@ else:
 	      epochs=75,
 	      )
 
-	model.save('./model_'+fe+'.h5')
+	model.save(modelpath + './model_'+fe+'.h5')
 
 #evaulate
 evaluate = model.evaluate(x_test_encoded, y_test_encoded, verbose=0)
