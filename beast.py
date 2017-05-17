@@ -35,15 +35,15 @@ glottal = False
 
 if f == 'b':
 	baseline = True
-	fe = 'base'
+	fe = 'baseline'
 	print('Running baseline')
 elif f == 's':
 	spectrogram = True
-	fe = 'spec'
+	fe = 'spectrogram'
 	print('Running spectrogram')
 elif f == 'g':
 	glottal = True
-	fe = 'glot'
+	fe = 'glottal'
 	print('Running glottal')
 
 # Load the dataset
@@ -242,6 +242,22 @@ final_predicted[np.arange(len(predicted)), predicted.argmax(1)] = 1
 actual = y_test_encoded
 actual = np.reshape(actual,(n_test,4))
 
+y_true = np.argmax(actual, axis=1)
+y_pred = np.argmax(final_predicted, axis=1)
+emo_labels = ['Happy', 'Anger', 'Sad', 'Neutral']
+
+print('final_predicted')
+print(final_predicted)
+print('actual')
+print(actual)
+
+print(np.sum(final_predicted, axis = 0))
+cm = confusion_matrix(y_true, y_pred, labels = emo)
+print(cm)
+
+print(classification_report(y_true, y_pred, target_names=target_names))
+
+'''
 print('final_predicted')
 print(final_predicted)
 print('actual')
@@ -254,11 +270,12 @@ pred_sad_count = np.sum(final_predicted, axis = 0)[1]
 pred_angry_count = np.sum(final_predicted, axis = 0)[2]
 pred_neutral_count = np.sum(final_predicted, axis = 0)[3]
 
+
 for i in range(n_test):
 	label = final_predicted[i]
 	idx = np.argmax(label)
 	confusion[idx] += actual[i]
-	'''
+
 	if idx == 0:	#happy
 		confusion[0] += label
 	elif idx == 1: #sad
@@ -267,14 +284,12 @@ for i in range(n_test):
 		confusion[2] += label
 	elif idx == 3: #neutral
 		confusion[3] += label
-	'''
 
 confusion[0] = confusion[0]/pred_happy_count
 confusion[1] = confusion[1]/pred_sad_count
 confusion[2] = confusion[2]/pred_angry_count
 confusion[3] = confusion[3]/pred_neutral_count
-
-print(confusion)
+'''
 
 
 

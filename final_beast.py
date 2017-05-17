@@ -39,7 +39,7 @@ log.warning('is when this file started running.')
 
 f = sys.argv[2]
 
-if sys.arg[1] == 'p':
+if sys.argv[1] == 'p':
 	#if you want to poke/play with your model
 	poke = True 
 else:

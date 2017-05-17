@@ -10,6 +10,7 @@ pip3 install --user keras
 pip3 install --user numpy
 pip3 install --user pydot
 pip3 install --user graphviz
+pip3 install --user tensorflow-gpu
+pip3 install --user theano
 #apt-get install graphviz
-
 echo "done setting up python"
