@@ -13,7 +13,7 @@ from keras.models import load_model
 from keras.utils import plot_model
 
 def pickTestSession():
-	return randomint(1,5) 
+	return random.randomint(1,5) 
 
 def load_allData():
 	testSesh = pickTestSession()
