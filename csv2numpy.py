@@ -25,9 +25,9 @@ for key in fd:
     for emotions in classifications:
             if emotions[0] == 'Happiness':
                     count[0] += 1
-            elif emotions[0] == 'Sadness':
-                    count[1] += 1
             elif emotions[0] == 'Anger':
+                    count[1] += 1
+            elif emotions[0] == 'Sadness':
                     count[2] += 1
             elif emotions[0] == 'Neutral state':
                     count[3] += 1
@@ -35,13 +35,13 @@ for key in fd:
     if mode != 0:
             label_idx = count.index(mode)
             if label_idx == 0:
-                    label = 'Happiness'
+                    label = 0 # happiness
             elif label_idx == 1:
-                    label = 'Sadness'
+                    label = 1 # anger
             elif label_idx == 2:
-                    label = 'Anger'
+                    label = 2 # sadness
             elif label_idx == 3:
-                    label = 'Neutral'
+                    label = 3 # neutral
             data_filenames.append(key)
             labels.append(label)
             filename_to_label.append((key,label))
