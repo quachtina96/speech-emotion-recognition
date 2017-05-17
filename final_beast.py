@@ -90,7 +90,7 @@ encoding_dim = 64
 print('d: ',d)
 print('encoding dim: ',encoding_dim)
 
-if Path(modelpath + 'aec_'+fe+'.h5').exists() and !(poke):
+if Path(modelpath + 'aec_'+fe+'.h5').exists() and not poke:
 	print('loaded existing aec model')
 	aec = load_model('aec_'+fe+'.h5')
 else:
@@ -167,7 +167,7 @@ print('reshaped y_train_encoded.shape: ', y_train_encoded.shape)
 print('reshaped y_test_encoded.shape: ', y_test_encoded.shape)
 
 
-if Path(modelpath + 'model.h5_'+fe+'').exists() and !(poke):
+if Path(modelpath + 'model.h5_'+fe+'').exists() and not poke:
 	print('loaded existing model')
 	model = load_model('model_'+fe+'.h5')
 else:
