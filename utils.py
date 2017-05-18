@@ -13,7 +13,7 @@ from keras.models import load_model
 from keras.utils import plot_model
 
 def pickTestSession():
-	return random.randomint(1,5) 
+	return random.randint(1,5) 
 
 def load_allData():
 	testSesh = pickTestSession()
@@ -50,19 +50,31 @@ def load_allData():
 	test_glottal = pd.concat(test_glottal_list,ignore_index=True)
 	test_spectrogram = pd.concat(test_spectrogram_list,ignore_index=True)
 
-	train_dic = { 'train_baseline': 0,
-				  'train_glottal': 0,
-				  'train_spectrogram': 0,
-				  'train_labels': 0,
+	train_baseline_labels = list_to_categorical(train_baseline_labels_list)
+	train_glottal_labels = list_to_categorical(train_glottal_labels_list)
+	train_spectrogram_labels = list_to_categorical(train_spectrogram_labels_list)
+	test_baseline_labels = list_to_categorical(test_baseline_labels_list)
+	test_glottal_labels = list_to_categorical(test_glottal_labels_list)
+	test_spectrogram_labels = list_to_categorical(test_spectrogram_labels_list)
+
+	train_dic = { 'train_baseline': train_baseline,
+				  'train_glottal': train_glottal,
+				  'train_spectrogram': train_spectrogram,
+				  'train_baseline_labels': train_baseline_labels,
+				  'train_glottal_labels': train_glottal_labels,
+				  'train_spectrogram_labels': train_spectrogram_labels
 				}
-	test_dic = { 'test_baseline': 0,
-				  'test_glottal': 0,
-				  'test_spectrogram': 0,
-				  'test_labels': 0,
+	test_dic = {  'test_baseline': test_baseline,
+				  'test_glottal': test_glottal,
+				  'test_spectrogram': test_spectrogram,
+				  'test_baseline_labels': test_baseline_labels,
+				  'test_glottal_labels': test_glottal_labels,
+				  'test_spectrogram_labels': test_spectrogram_labels
 				}
 	return train_dic, test_dic
 
 def load_datadic(i):
+	filepath = '/home/akekeke/pickles/csv2pd/',
 	data_dic = pd.read_pickle('data_dic'+str(i)+'.pickle')
 	return data_dic
 
@@ -79,3 +91,37 @@ def list_to_categorical(y):
 def reshape(x):
 	n,d = x.shape
 	x_reshaped = np.reshape(x, (n,1,d))
+
+def calculateConfusionMatrix(predicted, actual):
+	# predicted, actual are expected to be 2D, one hot arrays
+	confusion = np.zeros((4,4))
+	
+	for i in range(n_test):
+		label = predicted[i]
+		idx = np.argmax(label)
+		confusion[idx] += actual[i]
+
+	count_sum = np.sum(predicted, axis = 0)
+	pred_happy_count = count_sum[0]
+	pred_sad_count = count_sum[1]
+	pred_angry_count = count_sum[2]
+	pred_neutral_count = count_sum[3]
+	
+	confusion[0] = confusion[0]/pred_happy_count
+	confusion[1] = confusion[1]/pred_sad_count
+	confusion[2] = confusion[2]/pred_angry_count
+	confusion[3] = confusion[3]/pred_neutral_count
+
+	return confusion
+
+def calculateWeightedAccuracy:
+	'''
+	Weighted accuracy is the accuracy over all
+	testing utterances in the dataset, and unweighted accuracy is the
+	average accuracy over each emotion category (Happy, Angry,
+	Sad and Neutral).
+	'''
+	return 0
+
+def calculateUnweightedAccuracy:
+	return 0
