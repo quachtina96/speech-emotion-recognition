@@ -74,7 +74,7 @@ def load_allData():
 	return train_dic, test_dic
 
 def load_datadic(i):
-	filepath = '/home/akekeke/pickles/csv2pd/',
+	filepath = '/home/akekeke/pickles/csv2pd/'
 	data_dic = pd.read_pickle('data_dic'+str(i)+'.pickle')
 	return data_dic
 
