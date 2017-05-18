@@ -33,7 +33,7 @@ def load_allData():
 	train_baseline_labels_list= []
 	train_glottal_list = []
 	train_glottal_labels_list = []
-	train_spectrogram = []			
+	train_spectrogram_list = []			
 	train_spectrogram_labels_list = []
 	
 	for i in range(1,6):
