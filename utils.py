@@ -21,6 +21,21 @@ def load_allData():
 	log.warning('is when data started to load.')
 	testSesh = pickTestSession()
 	print('Session '+str(testSesh)+' used as test set')
+	
+	test_baseline_list = []
+	test_baseline_labels_list = []
+	test_glottal_list = []
+	test_glottal_labels_list = []
+	test_spectrogram_list = []		
+	test_spectrogram_labels_list = []
+	
+	train_baseline_list = []
+	train_baseline_labels_list= []
+	train_glottal_list = []
+	train_glottal_labels_list = []
+	train_spectrogram = []			
+	train_spectrogram_labels_list = []
+	
 	for i in range(1,6):
 		data_dic = load_datadic(i)
 
@@ -34,16 +49,16 @@ def load_allData():
 		if i == testSesh:
 			test_baseline_list.append(baseline)
 			test_baseline_labels_list.append(baseline_labels)
-			test_glottal.append(glottal)
+			test_glottal_list.append(glottal)
 			test_glottal_labels_list.append(glottal_labels)
-			test_spectrogram.append(spectrogram) 			
+			test_spectrogram_list.append(spectrogram) 			
 			test_spectrogram_labels_list.append(spectrogram_labels) 
 		else:
 			train_baseline_list.append(baseline)
 			train_baseline_labels_list.append(baseline_labels)
-			train_glottal.append(glottal)
+			train_glottal_list.append(glottal)
 			train_glottal_labels_list.append(glottal_labels)
-			train_spectrogram.append(spectrogram) 			
+			train_spectrogram_list.append(spectrogram) 			
 			train_spectrogram_labels_list.append(spectrogram_labels) 
 
 	train_baseline = pd.concat(train_baseline_list,ignore_index=True)
