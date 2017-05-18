@@ -114,7 +114,7 @@ def calculateConfusionMatrix(predicted, actual):
 
 	return confusion
 
-def calculateWeightedAccuracy:
+def calculateWeightedAccuracy():
 	'''
 	Weighted accuracy is the accuracy over all
 	testing utterances in the dataset, and unweighted accuracy is the
@@ -123,5 +123,5 @@ def calculateWeightedAccuracy:
 	'''
 	return 0
 
-def calculateUnweightedAccuracy:
+def calculateUnweightedAccuracy():
 	return 0
