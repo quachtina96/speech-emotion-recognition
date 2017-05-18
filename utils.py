@@ -2,6 +2,7 @@ import pandas as pd
 import numpy as np
 import random
 import h5py
+import logging as log
 
 from pathlib import Path
 
@@ -16,6 +17,8 @@ def pickTestSession():
 	return random.randint(1,5) 
 
 def load_allData():
+	log.basicConfig(format='%(asctime)s %(message)s', datefmt='%m/%d/%Y %I:%M:%S %p')
+	log.warning('is when data started to load.')
 	testSesh = pickTestSession()
 	print('Session '+str(testSesh)+' used as test set')
 	for i in range(1,6):
@@ -71,9 +74,12 @@ def load_allData():
 				  'test_glottal_labels': test_glottal_labels,
 				  'test_spectrogram_labels': test_spectrogram_labels
 				}
+	log.basicConfig(format='%(asctime)s %(message)s', datefmt='%m/%d/%Y %I:%M:%S %p')
+	log.warning('is when data finished loading.')
 	return train_dic, test_dic
 
 def load_datadic(i):
+	print('loading data_dic'+str(i)+' ...')
 	filepath = '/home/akekeke/pickles/csv2pd/'
 	data_dic = pd.read_pickle(filepath+'data_dic'+str(i)+'.pickle')
 	return data_dic
