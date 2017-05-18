@@ -75,7 +75,7 @@ def load_allData():
 
 def load_datadic(i):
 	filepath = '/home/akekeke/pickles/csv2pd/'
-	data_dic = pd.read_pickle('data_dic'+str(i)+'.pickle')
+	data_dic = pd.read_pickle(filepath+'data_dic'+str(i)+'.pickle')
 	return data_dic
 
 def list_to_categorical(y):
