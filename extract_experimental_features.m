@@ -104,7 +104,7 @@ for i=1:length(paths)
     csvwrite(char(spectrogram_dir + filename + '.spec.csv'), spec_context_windows);
     catch
     err_count = err_count + 1
-    disp('[ERROR] could not analyze ' + paths(i))
+    disp(strcat('[ERROR] could not analyze ', filename))
 end
 end
 disp(err_count)

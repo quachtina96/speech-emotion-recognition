@@ -119,7 +119,7 @@ def save_utterance_id_list(path_to_categorical_directory, path_to_utterance_id_l
 def save_pickled_utt_to_emotion_map(path_to_categorical_directory, pickle_path):
 	emo_map = EmoMap()
 	emo_map.from_categorical_dir(path_to_categorical_directory)
-	pickle.dump(emo_map.utterance_to_emotion_map, open(pickle_path, "wb" ))
+	pickle.dump(emo_map.utterance_to_emotion_map, open(pickle_path, "wb+" ))
 
 if __name__ == "__main__":
 	for session_number in range(1,6):
@@ -128,8 +128,8 @@ if __name__ == "__main__":
 	# 	path_to_utterance_id_list = os.path.join(path_to_categorical_directory, 'utteranceIDs.txt')
 	# 	# save_utterance_id_list(path_to_categorical_directory, path_to_utterance_id_list)
 	
-	pickle_path = "session1_pickle"
-	save_pickled_utt_to_emotion_map(path_to_categorical_directory, pickle_path)
+		pickle_path = "/pool001/quacht/IEMOCAP_full_release/Session" + str(session_number) + "/data/utterance_to_emotion_map.pickle"
+		save_pickled_utt_to_emotion_map(path_to_categorical_directory, pickle_path)
 
 	# NOTE: to open pickle file run the code below
 	# f = open(pickle_path, 'rb')
