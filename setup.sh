@@ -11,8 +11,9 @@ pip3 install --user keras
 pip3 install --user numpy
 pip3 install --user pydot
 pip3 install --user graphviz
-pip3 install --user tensorflow-gpu
+#pip3 install --user tensorflow-gpu
 pip3 install --user theano
+pip3 install --user sklearn
 pip3 install --user --upgrade https://storage.googleapis.com/tensorflow/linux/cpu/tensorflow-1.1.0-cp35-cp35m-linux_x86_64.whl
 #apt-get install graphviz
 echo "done setting up python"
