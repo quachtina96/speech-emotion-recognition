@@ -29,7 +29,7 @@ def load_allData():
 		spectrogram = data_dic['spectrogram']
 		baseline_labels = data_dic['baseline_labels']
 		glottal_labels = data_dic['glottal_labels']
-		spectrogram_labels = data_dic['spectrogram_lables']
+		spectrogram_labels = data_dic['spectrogram_labels']
 
 		if i == testSesh:
 			test_baseline_list.append(baseline)
