@@ -4,6 +4,7 @@
 
 This is the structure that this file expects the directories to
 be in.
+`
 ~home
         IEMOCAP_full_release
                 Session
@@ -37,8 +38,8 @@ be in.
                 Session4
                 Session5
         pickles - this is where the stuff we'll be working with is saved
-        
-        
+ `      
+ `       
  '''
  UTTERANCE TO EMOTIONMAP FORMAT
   - DICTIONARY
@@ -46,3 +47,4 @@ be in.
   - key: string
   - value: list of string list
 '''
+`
